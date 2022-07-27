@@ -13,30 +13,30 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    CourseRepository repository;
+    CourseRepository courseRepository;
 
     private List<Course> courses = new ArrayList<Course>();
 
     @PostMapping("/course")
     public ResponseEntity<String> createCourse(@RequestBody Course course){
-        repository.save(course);
+        courseRepository.save(course);
         return ResponseEntity.status(HttpStatus.CREATED).body("Success, this course has been added");
     }
 
     @GetMapping("/courses")
     public ResponseEntity<List<Course>> getCourses() {
-        return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(courseRepository.findAll());
     }
 
     @GetMapping("/course/{id}")
-    public ResponseEntity<Course> getGreetingById(@PathVariable String id) {
-        return ResponseEntity.status(HttpStatus.OK).body(repository.findById(Integer.parseInt(id)));
+    public ResponseEntity<Course> getCoursesById(@PathVariable String id) {
+        return ResponseEntity.status(HttpStatus.OK).body(courseRepository.findById(Integer.parseInt(id)));
     }
 
     @DeleteMapping("/course/{id}")
     //transactional?
     public ResponseEntity<String> deleteCourse(@PathVariable String id) {
-        repository.deleteById(Integer.parseInt(id));
+        courseRepository.deleteById(Integer.parseInt(id));
         return ResponseEntity.status(HttpStatus.OK).body("Course Deleted");
     }
 }

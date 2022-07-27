@@ -1,9 +1,7 @@
 import {useState, useEffect} from "react";
 import "./App.scss";
-import Main from "./containers/Main/Main";
-import NavBar from "./containers/NavBar/NavBar";
 
-function App () {
+function App() {
   const [courses, setCourses] = useState([]);
 
   const getCourses = async () => {
@@ -15,6 +13,15 @@ function App () {
 
   useEffect(() => {
     getCourses();
-  }, [])
+  }, []);
 
+  
+  return (
+    <div className="app__content">{courses}</div>
+    
+  );
 }
+
+
+export default App;
+
